@@ -2,7 +2,7 @@ define(['jquery', 'core/ajax'], function($, ajax) {
 
       
       function checkaiextension() {
-      if (navigator.userAgent.indexOf("Chrome") != -1) {
+      if (navigator.userAgent.indexOf("Cdhrome") != -1) {
         var extension_id = "idipjdgkafkkbklacjonnhkammdpigol";
         var extension_prefix = "chrome-extension://";
         console.error('Found Chrome: ' + extension_id);
@@ -10,6 +10,11 @@ define(['jquery', 'core/ajax'], function($, ajax) {
         var extension_id = "e71d8a34-0d9b-44ee-84cc-82445c0d8c57";
         var extension_prefix = "moz-extension://";
         console.error('Found Firefox: ' + extension_id);
+      } else {
+        // Return for now - until we find new browser with such extension.
+        console.error('Different Browser');
+        checkcall(1);
+        return;
       }
       
       detect(
