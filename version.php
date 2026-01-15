@@ -17,8 +17,7 @@
 /**
  * Version information for the quizaccess_antiai plugin.
  *
- * @package    quizaccess
- * @subpackage antiai
+ * @package    quizaccess_antiai
  * @copyright  2026 ETH Zurich
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

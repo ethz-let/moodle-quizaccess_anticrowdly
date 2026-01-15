@@ -17,8 +17,7 @@
 /**
  * Strings for the quizaccess_antiai plugin.
  *
- * @package    quizaccess
- * @subpackage antiai
+ * @package    quizaccess_antiai
  * @copyright  2026 ETH Zurich
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,8 +26,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 
+$string['aiextensionfound'] = 'You must uninstall the AI extension(s) in your browser in order to be able to attempt the quiz.';
+$string['notallowed'] = 'AI Extension found!';
 $string['pluginname'] = 'Anti-AI quiz access rule that prevents AI browser extensions from filling answers or leaking them to public databases.';
 $string['popupwithjavascriptsupport'] = 'Prevent AI extensions from filling or leaking questions';
-$string['notallowed'] = 'AI Extension found!';
-$string['aiextensionfound'] = 'You must uninstall the AI extension(s) in your browser in order to be able to attempt the quiz.';
 $string['privacy:metadata'] = 'The Anti-AI security quiz access rule plugin does not store any personal data.';

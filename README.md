@@ -1,3 +1,4 @@
+[![Moodle Plugin CI](https://github.com/ethz-let/moodle-quizaccess_antiai/actions/workflows/moodle-plugin-ci.yml/badge.svg)](https://github.com/ethz-let/moodle-quizaccess_antiai/actions/workflows/moodle-plugin-ci.yml)
 # moodle-quizaccess_antiai
 Anti-AI (Crowdly &amp; Co.) accessrule in moodle quiz
 

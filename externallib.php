@@ -28,7 +28,6 @@ require_once($CFG->libdir . '/externallib.php');
  * Service functions.
  */
 class quizaccess_antiai_external extends external_api{
-
     /**
      * Returns description of method parameters
      *
@@ -48,15 +47,15 @@ class quizaccess_antiai_external extends external_api{
      * Function to manage access
      *
      * @param int $status for status change
-     * @param string $backuptype The type of backup
      * @throws \moodle_exception
      */
     public static function manageaccess($status) {
         global $USER, $DB, $CFG, $SESSION;
         // Parameter validation.
-        $params = self::validate_parameters(self::manageaccess_parameters(),
-                                            ['status' => $status]
-                                           );
+        $params = self::validate_parameters(
+            self::manageaccess_parameters(),
+            ['status' => $status]
+        );
 
         $status = $params['status'];
         if (!isset($SESSION->quizaccess_antiai_access)) {
@@ -70,7 +69,6 @@ class quizaccess_antiai_external extends external_api{
         $result = [];
         $result['data'] = $statusdata;
         return $result;
-
     }
 
     /**
@@ -88,11 +86,10 @@ class quizaccess_antiai_external extends external_api{
                         [
                             'status' => new external_value(PARAM_INT, 'The status code'),
                         ]
-                    ), 'Manage Access'
+                    ),
+                    'Manage Access'
                 ),
             ]
         );
-
     }
-
 }

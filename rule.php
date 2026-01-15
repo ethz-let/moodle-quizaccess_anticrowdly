@@ -26,7 +26,7 @@ use mod_quiz\quiz_settings;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class quizaccess_antiai extends access_rule_base {
-
+    #[\Override]
     public static function make(quiz_settings $quizobj, $timenow, $canignoretimelimits) {
 
         if ($quizobj->get_quiz()->browsersecurity !== 'antiai') {
@@ -36,37 +36,52 @@ class quizaccess_antiai extends access_rule_base {
         return new self($quizobj, $timenow);
     }
 
+    #[\Override]
     public function setup_attempt_page($page) {
         global $SESSION;
         $page->set_popup_notification_allowed(false); // Prevent message notifications.
         $page->set_title($this->quizobj->get_course()->shortname . ': ' . $page->title);
         $page->set_pagelayout('secure');
         $this->antiai_getsessioninfo();
-        if($SESSION->quizaccess_antiai_access == 0){
-            throw new \moodle_exception(get_string('aiextensionfound','quizaccess_antiai'));
+        if ($SESSION->quizaccess_antiai_access == 0) {
+            throw new \moodle_exception(get_string('aiextensionfound', 'quizaccess_antiai'));
         }
     }
-    
+
+    /**
+     * Describe any messages to show on the attempt page.
+     *
+     * @return array
+     * @throws coding_exception
+     */
     public function description(): array {
         global $PAGE, $SESSION;
         $messages = [];
         $this->antiai_getsessioninfo();
-        if($SESSION->quizaccess_antiai_access == 0){
-            $messages = [html_writer::div(get_string('aiextensionfound','quizaccess_antiai'), 'alert alert-warning')];
+        if (isset($SESSION->quizaccess_antiai_access) && $SESSION->quizaccess_antiai_access == 0) {
+            $messages = [html_writer::div(get_string('aiextensionfound', 'quizaccess_antiai'), 'alert alert-warning')];
         }
         return $messages;
     }
+
+    /**
+     * Include the JavaScript module to get session info from client side.
+     *
+     * @return void
+     */
     public static function antiai_getsessioninfo() {
          global $PAGE;
         $PAGE->requires->js_call_amd('quizaccess_antiai/antiai', 'init');
     }
 
     /**
-     * @return array key => lang string any choices to add to the quiz Browser
-     *      security settings menu.
+     * Get any browser security choices added by this rule.
+     *
+     * @return array key => lang string any choices to add to the quiz Browser security settings menu.
+     * @throws coding_exception
      */
     public static function get_browser_security_choices() {
         return ['antiai' =>
-                get_string('popupwithjavascriptsupport', 'quizaccess_antiai')];
+            get_string('popupwithjavascriptsupport', 'quizaccess_antiai')];
     }
 }
