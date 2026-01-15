@@ -13,13 +13,13 @@ define(['jquery', 'core/ajax'], function($, ajax) {
            }
            function checkcall(val) {
                if(val == 0){
-                 console.error('Found AI Extention');
+                 console.error('Found CrowdlyAI Extention');
               } else {
-                 console.error('AI Extention Not Found');
+                 console.error('CrowdlyAI Extention Not Found');
               }
               
                const request = {
-                 methodname: 'quizaccess_antiai_manageaccess',
+                 methodname: 'quizaccess_anticrowdly_manageaccess',
                  args: {
                      status: val
                  },
