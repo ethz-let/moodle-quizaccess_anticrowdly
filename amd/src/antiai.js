@@ -2,7 +2,15 @@ define(['jquery', 'core/ajax'], function($, ajax) {
 
       
       function checkaiextension() {
-      var extension_id = "idipjdgkafkkbklacjonnhkammdpigol";
+      if (navigator.userAgent.indexOf("Chrome") != -1) {
+        var extension_id = "idipjdgkafkkbklacjonnhkammdpigol";
+        var extension_prefix = "chrome-extension://";
+        console.error('Found Chrome: ' + extension_id);
+      } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+        var extension_id = "e71d8a34-0d9b-44ee-84cc-82445c0d8c57";
+        var extension_prefix = "moz-extension://";
+        console.error('Found Firefox: ' + extension_id);
+      }
       
       detect(
         extension_id,
@@ -31,7 +39,8 @@ define(['jquery', 'core/ajax'], function($, ajax) {
         s.onerror = if_not_installed;
         s.onload = if_installed;
         document.body.appendChild(s);
-        s.src = "chrome-extension://" + extension_id + '/src/styles.css';
+        console.error("testing "+ extension_prefix + extension_id + '/src/styles.css');
+        s.src =  extension_prefix + extension_id + '/src/styles.css';
       }
     }
     return {
