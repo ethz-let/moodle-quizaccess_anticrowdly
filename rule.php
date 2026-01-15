@@ -43,7 +43,7 @@ class quizaccess_anticrowdly extends access_rule_base {
         $page->set_pagelayout('secure');
         $this->anticrowdly_getsessioninfo();
         if($SESSION->quizaccess_anticrowdly_access == 0){
-       //     throw new \moodle_exception(get_string('aiextensionfound','quizaccess_anticrowdly'));
+            throw new \moodle_exception(get_string('aiextensionfound','quizaccess_anticrowdly'));
         }
     }
     
